@@ -1,0 +1,20 @@
+<!-- templates/birthday/birthday_list.html -->
+{% extends "base.html" %}
+
+{% block content %}
+  {% for birthday in birthdays %}
+    <div>
+      <div>
+        {{ birthday.first_name }} {{ birthday.last_name }} - {{ birthday.birthday }}
+      </div>
+      <!-- Ссылку тоже обернём в div; адрес ссылки
+        указываем через namespace:name -->
+      <div>
+        <a href="{% url 'birthday:edit' birthday.id %}">Изменить запись</a>
+      </div>
+      {% if not forloop.last %}
+        <hr>
+      {% endif %}
+    </div>
+  {% endfor %}
+{% endblock %}
